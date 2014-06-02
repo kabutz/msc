@@ -33,10 +33,13 @@
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
-package java.util.concurrent.locks;
+package safe;
+
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.LockSupport;
 import sun.misc.Unsafe;
 
 /**
@@ -2272,7 +2275,7 @@ public abstract class AbstractQueuedSynchronizer
      * are at it, we do the same for other CASable fields (which could
      * otherwise be done with atomic field updaters).
      */
-    private static final Unsafe unsafe = Unsafe.getUnsafe();
+    private static final Unsafe unsafe = UnsafeProvider.getUnsafe();
     private static final long stateOffset;
     private static final long headOffset;
     private static final long tailOffset;
