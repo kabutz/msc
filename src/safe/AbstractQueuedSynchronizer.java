@@ -739,18 +739,18 @@ public abstract class AbstractQueuedSynchronizer
          * racing acquires/releases, so most need signals now or soon
          * anyway.
          */
-//        if (propagate > 0 || h == null || h.waitStatus < 0 ||
-//                (h = head) == null || h.waitStatus < 0) {
-//            Node s = node.next;
-//            if (s == null || s.isShared())
-//                doReleaseShared();
-//        }
-
-        if (propagate > 0 || h == null || h.waitStatus < 0) {
+        if (propagate > 0 || h == null || h.waitStatus < 0 ||
+                (h = head) == null || h.waitStatus < 0) {
             Node s = node.next;
             if (s == null || s.isShared())
                 doReleaseShared();
         }
+
+//        if (propagate > 0 || h == null || h.waitStatus < 0) {
+//            Node s = node.next;
+//            if (s == null || s.isShared())
+//                doReleaseShared();
+//        }
     }
 
     // Utilities for various versions of acquire
