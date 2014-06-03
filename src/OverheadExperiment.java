@@ -51,6 +51,8 @@ public class OverheadExperiment {
             Lock lock;
             if (type.equals("s"))
                 lock = new safe.ReentrantLock();
+            else if (type.equals("d"))
+                lock = new safe.ReentrantLockDirect();
             else
                 lock = new java.util.concurrent.locks.ReentrantLock();
             counters.add(new Counter(lock));
