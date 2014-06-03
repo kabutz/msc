@@ -24,9 +24,13 @@ public class CounterThread extends Thread {
 
     @Override
     public void run() {
-        while (count < countMax) {
-            counter.increment();
-            count++;
+        try {
+            while (count < countMax) {
+                counter.increment();
+                count++;
+            }
+        } catch(Throwable t) {
+            System.err.println("Error in CounterThread: " + t);
         }
     }
 }
