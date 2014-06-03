@@ -4,7 +4,7 @@ public class CounterThread extends Thread {
     private final Counter counter;
     private long count = 0;
     private final long countMax;
-    private static volatile boolean startingGun = false;
+    private static volatile boolean startingGun = true;
 
     public CounterThread(Counter counter, long countMax) {
         this.counter = counter;
@@ -36,6 +36,19 @@ public class CounterThread extends Thread {
             }
         } catch(Throwable t) {
             System.err.println("Error in CounterThread: " + t);
+        }
+        if (counter.lock instanceof ReentrantLock) {
+            if (((ReentrantLock)counter.lock).isHeldByCurrentThread()) {
+                System.err.println("Thread did not let go of lock!!!: " + this);
+            }
+        } else if (counter.lock instanceof safe.ReentrantLock) {
+            if (((safe.ReentrantLock)counter.lock).isHeldByCurrentThread()) {
+                System.err.println("Thread did not let go of lock!!!: " + this);
+            }
+        } else if (counter.lock instanceof safe.ReentrantLockDirect) {
+            if (((safe.ReentrantLockDirect)counter.lock).isHeldByCurrentThread()) {
+                System.err.println("Thread did not let go of lock!!!: " + this);
+            }
         }
     }
 }

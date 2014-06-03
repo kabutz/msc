@@ -1,3 +1,4 @@
+import java.lang.management.*;
 import java.util.*;
 import java.util.concurrent.locks.*;
 
@@ -32,6 +33,7 @@ public class OverheadExperiment {
                     System.out.println("state owner: " + other.getState());
                 }
                 // Keep program alive to dump thread stacks with: jstack -l $(pidof java)
+                System.out.println(java.lang.management.ManagementFactory.getThreadMXBean().getPeakThreadCount());
                 while (true) {
                 }
             }
@@ -41,6 +43,7 @@ public class OverheadExperiment {
             sum += counters.get(i).getCount();
         }
         System.out.println(sum);
+        System.out.println(java.lang.management.ManagementFactory.getThreadMXBean().getPeakThreadCount());
     }
 
     public static void main(String[] args) throws InterruptedException, NoSuchMethodException {
