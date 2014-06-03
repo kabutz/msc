@@ -44,19 +44,22 @@ package safe;
  * appropriately maintained values to help control and monitor access
  * and provide diagnostics.
  *
- * @since 1.6
  * @author Doug Lea
+ * @since 1.6
  */
 public abstract class AbstractOwnableSynchronizer
-    implements java.io.Serializable {
+        implements java.io.Serializable {
 
-    /** Use serial ID even though all fields transient. */
+    /**
+     * Use serial ID even though all fields transient.
+     */
     private static final long serialVersionUID = 3737899427754241961L;
 
     /**
      * Empty constructor for use by subclasses.
      */
-    protected AbstractOwnableSynchronizer() { }
+    protected AbstractOwnableSynchronizer() {
+    }
 
     /**
      * The current owner of exclusive mode synchronization.
@@ -78,6 +81,7 @@ public abstract class AbstractOwnableSynchronizer
      * <tt>setExclusiveOwnerThread</tt>, or <tt>null</tt> if never
      * set.  This method does not otherwise impose any synchronization
      * or <tt>volatile</tt> field accesses.
+     *
      * @return the owner thread
      */
     protected final Thread getExclusiveOwnerThread() {

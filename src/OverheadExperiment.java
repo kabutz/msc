@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.locks.Lock;
+import java.util.*;
+import java.util.concurrent.locks.*;
 
 public class OverheadExperiment {
 
@@ -33,7 +30,8 @@ public class OverheadExperiment {
                     System.out.println("state owner: " + other.getState());
                 }
                 // Keep program alive to dump thread stacks with: jstack -l $(pidof java)
-                while (true) {}
+                while (true) {
+                }
             }
         }
         long sum = 0;

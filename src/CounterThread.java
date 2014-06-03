@@ -1,4 +1,4 @@
-import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.*;
 
 public class CounterThread extends Thread {
     private final Counter counter;
