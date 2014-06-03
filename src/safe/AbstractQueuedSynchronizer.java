@@ -2308,27 +2308,27 @@ public abstract class AbstractQueuedSynchronizer
      * are at it, we do the same for other CASable fields (which could
      * otherwise be done with atomic field updaters).
      */
-    private static final Unsafe unsafe = UnsafeProvider.getUnsafe();
+    private static final Unsafe unsafe;// = UnsafeProvider.getUnsafe();
 
-    /*
+//    /*
     static {
         Unsafe temp = null;
         try {
             temp = Unsafe.getUnsafe(); // first try if the class is in the boot class path
-            System.out.printf("Unsafe from Unsafe.getUnsafe()");
+            System.out.println("Unsafe from Unsafe.getUnsafe()");
         } catch (SecurityException ex) {
             try {
                 Field f = Unsafe.class.getDeclaredField("theUnsafe");
                 f.setAccessible(true);
                 temp = (Unsafe) f.get(null);
-                System.out.printf("Unsafe via reflection");
+                System.out.println("Unsafe via reflection");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         unsafe = temp;
     }
-    */
+//    */
 
     private static final long stateOffset;
     private static final long headOffset;
