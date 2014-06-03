@@ -45,6 +45,7 @@ public class OverheadExperiment {
         int nthreads = Integer.parseInt(args[0]);
         int ncounters = Integer.parseInt(args[1]);
         String type = args[2];
+        int nexecutions = Integer.parseInt(args[3]);
 
         List<Counter> counters = new ArrayList<Counter>();
         for (int i = 0; i < ncounters; i++) {
@@ -58,6 +59,6 @@ public class OverheadExperiment {
             counters.add(new Counter(lock));
         }
 
-        runExecutionBoundedTest(nthreads, counters, 1000);
+        runExecutionBoundedTest(nthreads, counters, nexecutions);
     }
 }
