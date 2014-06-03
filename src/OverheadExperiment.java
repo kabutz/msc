@@ -13,6 +13,8 @@ public class OverheadExperiment {
             threads.add(t);
         }
 
+        CounterThread.shoot(); // let all the threads go crazy at the same time
+
         for (int i = 0; i < nthreads; i++) {
             CounterThread t = threads.get(i);
             t.join(30000);

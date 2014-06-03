@@ -4,6 +4,7 @@ public class CounterThread extends Thread {
     private final Counter counter;
     private long count = 0;
     private final long countMax;
+    private static volatile boolean startingGun = false;
 
     public CounterThread(Counter counter, long countMax) {
         this.counter = counter;
@@ -22,8 +23,12 @@ public class CounterThread extends Thread {
         return counter.getCount();
     }
 
+    public static void shoot() {
+        startingGun = true;
+    }
     @Override
     public void run() {
+        while(!startingGun);
         try {
             while (count < countMax) {
                 counter.increment();
