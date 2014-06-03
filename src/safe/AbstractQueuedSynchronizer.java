@@ -2315,9 +2315,9 @@ public abstract class AbstractQueuedSynchronizer
      * are at it, we do the same for other CASable fields (which could
      * otherwise be done with atomic field updaters).
      */
-    private static final Unsafe unsafe;// = UnsafeProvider.getUnsafe();
+    private static final Unsafe unsafe = UnsafeProvider.getUnsafe();
 
-    //*
+    /*
     static {
         Unsafe temp = null;
         try {
