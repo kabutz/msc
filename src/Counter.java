@@ -2,7 +2,7 @@ import java.util.concurrent.locks.Lock;
 
 public class Counter {
     private long counter = 0;
-    public Lock lock;
+    public final Lock lock;
 
     public Counter(Lock lock) {
         this.lock = lock;

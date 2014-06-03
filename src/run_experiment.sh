@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -cp classpath OverheadExperiment $*
+java -bootclasspath/p:classpath OverheadExperiment $*
