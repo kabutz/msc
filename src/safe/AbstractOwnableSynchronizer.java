@@ -49,6 +49,9 @@ package safe;
  */
 public abstract class AbstractOwnableSynchronizer
         implements java.io.Serializable {
+    static {
+        System.out.println("safe.AbstractOwnableSynchronizer.static initializer");
+    }
 
     /**
      * Use serial ID even though all fields transient.
