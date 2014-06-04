@@ -1,4 +1,3 @@
-java7
 rm -r src/classpath/* bootclasspath/* bootclasspath2/*
 cd boot/src
 javac -d ../../bootclasspath safe/UnsafeProvider.java
