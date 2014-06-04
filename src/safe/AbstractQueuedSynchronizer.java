@@ -37,7 +37,6 @@ package safe;
 
 import sun.misc.*;
 
-import java.lang.reflect.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
@@ -739,18 +738,11 @@ public abstract class AbstractQueuedSynchronizer
          * racing acquires/releases, so most need signals now or soon
          * anyway.
          */
-        if (propagate > 0 || h == null || h.waitStatus < 0 ||
-                (h = head) == null || h.waitStatus < 0) {
+        if (propagate > 0 || h == null || h.waitStatus < 0) {
             Node s = node.next;
             if (s == null || s.isShared())
                 doReleaseShared();
         }
-
-//        if (propagate > 0 || h == null || h.waitStatus < 0) {
-//            Node s = node.next;
-//            if (s == null || s.isShared())
-//                doReleaseShared();
-//        }
     }
 
     // Utilities for various versions of acquire
@@ -2316,27 +2308,6 @@ public abstract class AbstractQueuedSynchronizer
      * otherwise be done with atomic field updaters).
      */
     private static final Unsafe unsafe = UnsafeProvider.getUnsafe();
-
-    /*
-    static {
-        Unsafe temp = null;
-        try {
-            temp = Unsafe.getUnsafe(); // first try if the class is in the boot class path
-            System.out.println("Unsafe from Unsafe.getUnsafe()");
-        } catch (SecurityException ex) {
-            try {
-                Field f = Unsafe.class.getDeclaredField("theUnsafe");
-                f.setAccessible(true);
-                temp = (Unsafe) f.get(null);
-                System.out.println("Unsafe via reflection");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        unsafe = temp;
-    }
-//    */
-
     private static final long stateOffset;
     private static final long headOffset;
     private static final long tailOffset;
